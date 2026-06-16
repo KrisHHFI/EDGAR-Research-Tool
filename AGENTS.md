@@ -18,7 +18,7 @@ The app has no backend — it is a pure client-side React + TypeScript SPA built
 sec-dashboard/
 ├── AGENTS.md               ← this file
 ├── index.html              ← Vite HTML entry point
-├── vite.config.ts          ← Vite configuration
+├── vite.config.ts          ← Vite + Tailwind CSS v4 configuration
 ├── tsconfig.json           ← TypeScript root config
 ├── tsconfig.app.json       ← App-specific TS config
 ├── tsconfig.node.json      ← Node/build TS config
@@ -28,9 +28,16 @@ sec-dashboard/
 ├── public/                 ← Static assets served as-is
 └── src/
     ├── main.tsx            ← React root mount
-    ├── index.css           ← Minimal global reset
-    ├── App.tsx             ← Entire app: data, logic, and JSX
-    └── App.css             ← All component styles (dark theme)
+    ├── index.css           ← Tailwind v4 import + global base styles
+    ├── App.tsx             ← Root component: layout, state, filtering (~45 lines)
+    ├── App.css             ← Intentionally empty (styles via Tailwind)
+    ├── types.ts            ← FormEntry, Category interfaces + SIGNAL_META
+    ├── data.ts             ← CATEGORIES array + edgarUrl helper
+    └── components/
+        ├── Header.tsx      ← Sticky top bar with logo and live-feed link
+        ├── Sidebar.tsx     ← Category nav + search input
+        ├── FilingCard.tsx  ← Individual filing card (link to EDGAR)
+        └── CategorySection.tsx ← Section heading + cards grid
 ```
 
 ---
@@ -41,7 +48,7 @@ sec-dashboard/
 - **No credentials:** Never commit API keys, tokens, secrets, or any personal credentials anywhere in the repository. The app intentionally has no auth — keep it that way.
 - **No errors or lint warnings:** All files must pass TypeScript type-checking (`tsc --noEmit`) and ESLint (`eslint src/`) with zero errors before committing. Do not suppress rules without a documented reason.
 - **No backend:** All data is static — SEC EDGAR URLs are constructed client-side. Do not add a server, proxy, or environment variables.
-- **Styling:** All styles live in `App.css` using plain CSS custom properties. Do not introduce CSS-in-JS or a utility framework.
+- **Styling:** All styles are applied via **Tailwind CSS v4** utility classes directly in JSX. Global base styles (font, scrollbar) live in `index.css`. Do not add `App.css` styles, CSS-in-JS, or a separate utility framework.
 
 ---
 
@@ -67,7 +74,7 @@ npm run lint      # run ESLint
 
 ## Adding a New Filing Form
 
-1. Open `src/App.tsx` and find the `CATEGORIES` array.
+1. Open `src/data.ts` and find the `CATEGORIES` array.
 2. Add a new `FormEntry` object to the appropriate category (or create a new category).
 3. Set `type` to the exact EDGAR form-type string (e.g. `'8-K'`, `'SC 13D'`).
 4. Choose a `signal`: `'bullish'` | `'bearish'` | `'neutral'` | `'info'`.

@@ -1,5 +1,5 @@
-/* ── Reset & Base ─────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Styles live in index.css via Tailwind. This file is intentionally empty. */
+
 
 :root {
   --bg:        #0a0d13;
