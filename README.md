@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# EDGAR Research Tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, fast dashboard that gives retail investors direct, filtered access to the SEC's EDGAR filing system — the same public database used by Wall Street professionals.
 
-Currently, two official plugins are available:
+> Vibe coded using **Visual Studio Code**, **GitHub Copilot**, and **Claude Sonnet 4.6**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## What It Does
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The SEC requires every public company to file disclosures — earnings, insider trades, acquisitions, proxy votes, and more — through EDGAR. The problem is the raw site is hard to navigate. This tool solves that by organising the most investment-relevant filing types into a browsable dashboard, with each card linking directly to the live, filtered EDGAR feed for that form type.
 
-## Expanding the ESLint configuration
+Click any card and you land on the latest filings of that type — no account required, no paywall, just raw primary-source data.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Filing Categories
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Category | What's Included |
+|---|---|
+| ⚡ High-Signal / Time-Sensitive | 8-K, Form 3, Form 4, Form 5 |
+| 🏦 Activist & Institutional | SC 13D, SC 13G, and their amendments |
+| 📊 Company Financials | 10-K, 10-Q, and amended versions |
+| 💸 Capital Markets & Dilution | S-1, S-3, 424B3, 424B4, Form 144, Form D |
+| 🤝 M&A & Proxy | DEF 14A, DEFA14A, DEFM14A, SC TO-T |
+| 🌍 Foreign Issuers | 20-F, 6-K |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Each card shows:
+- The form name and a plain-English description
+- An investor tip explaining why the filing matters
+- A colour-coded signal badge: **Bullish**, **Bearish**, **Watch Closely**, or **Due Diligence**
+
+---
+
+## Running Locally
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Opens at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tech Stack
+
+- **React + TypeScript** — component logic and type safety
+- **Vite** — instant dev server and fast builds
+- **Plain CSS** — dark theme with CSS custom properties, no framework
+
+No backend. No API keys. No login. Everything runs in the browser.
