@@ -45,6 +45,14 @@ sec-dashboard/
 
 ---
 
+## GitHub Repository
+
+The project is hosted at: **https://github.com/KrisHHFI/EDGAR-Research-Tool**
+
+> **Important:** Only commit and push to GitHub when the user explicitly requests it. Do not push automatically after edits, refactors, or bug fixes — always wait for a direct instruction to do so.
+
+---
+
 ## Running the App
 
 ```bash
