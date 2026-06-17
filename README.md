@@ -4,6 +4,10 @@ A clean, fast dashboard that gives retail investors direct, filtered access to t
 
 > Vibe coded using **Visual Studio Code**, **GitHub Copilot**, and **Claude Sonnet 4.6**.
 
+<img src="EDGAR Project Promo.png" width="1000"/>
+
+<sub><i>Project Screenshot (17/06/2026)</i></sub>
+
 ---
 
 ## What It Does
